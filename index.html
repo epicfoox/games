@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Games Hub</h1>
+        <nav id="game-nav">
+            <ul>
+                <li><a href="#" class="game-link active" data-game="plinko">Plinko</a></li>
+                <li><a href="#" class="game-link" data-game="coinflip">Coin Flip</a></li>
+                <li><a href="#" class="game-link" data-game="updown">Up/Down</a></li>
+                <!-- More games will be added here in the future -->
+            </ul>
+        </nav>
+    </header>
+
+    <main id="game-container">
+        <!-- Game will be loaded here dynamically -->
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Games Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Core functionality -->
+    <script src="js/gameManager.js"></script>
+    
+    <!-- Games -->
+    <script src="games/plinko/plinko.js"></script>
+    <script src="games/coinflip/coinflip.js"></script>
+    <script src="games/updown/updown.js"></script>
+    
+    <!-- Main script -->
+    <script src="js/main.js"></script>
+</body>
+</html>

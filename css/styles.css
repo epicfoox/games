@@ -1,0 +1,379 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+    background-color: #3498db;
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    min-height: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* Game specific styles */
+.game-canvas {
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+/* Plinko specific styles */
+.plinko-board {
+    background-color: #1a1a2e;
+    border-radius: 8px;
+}
+
+.plinko-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.plinko-controls button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.plinko-controls button:hover {
+    background-color: #2980b9;
+}
+
+/* Coin Flip specific styles */
+.coin-flip-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+}
+
+.score-display {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.streak {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.coin-container {
+    height: 200px;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.coin {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.5s ease;
+}
+
+.coin-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    backface-visibility: hidden;
+}
+
+.heads {
+    background-color: #f39c12;
+    color: #fff;
+    transform: rotateY(0deg);
+}
+
+.tails {
+    background-color: #3498db;
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+.flipping {
+    animation: flip-animation 1.5s ease;
+}
+
+@keyframes flip-animation {
+    0% { transform: rotateY(0); }
+    100% { transform: rotateY(720deg); }
+}
+
+.heads-result {
+    transform: rotateY(0deg);
+}
+
+.tails-result {
+    transform: rotateY(180deg);
+}
+
+.result-message {
+    height: 30px;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.correct {
+    color: #2ecc71;
+}
+
+.wrong {
+    color: #e74c3c;
+}
+
+.guess-buttons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.guess-button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#guess-heads {
+    background-color: #f39c12;
+    color: white;
+}
+
+#guess-heads:hover {
+    background-color: #e67e22;
+}
+
+#guess-tails {
+    background-color: #3498db;
+    color: white;
+}
+
+#guess-tails:hover {
+    background-color: #2980b9;
+}
+
+/* UP/DOWN Card Game specific styles */
+.updown-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.updown-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.updown-score, .updown-deck-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.updown-card-area {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    min-height: 260px;
+}
+
+.updown-card-container {
+    width: 180px;
+    height: 250px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+}
+
+.card.hearts, .card.diamonds {
+    color: #e74c3c;
+}
+
+.card.clubs, .card.spades {
+    color: #2c3e50;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card-value.bottom {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+
+.card-suit {
+    font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.updown-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    height: 40px;
+    text-align: center;
+}
+
+.updown-message.correct {
+    color: #2ecc71;
+}
+
+.updown-message.wrong {
+    color: #e74c3c;
+}
+
+.updown-message.draw {
+    color: #3498db;
+}
+
+.updown-buttons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.updown-button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+#guess-higher {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#guess-higher:hover {
+    background-color: #27ae60;
+}
+
+#guess-lower {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#guess-lower:hover {
+    background-color: #c0392b;
+}
+
+.updown-button.new-game {
+    background-color: #3498db;
+    color: white;
+    margin-top: 1rem;
+}
+
+.updown-button.new-game:hover {
+    background-color: #2980b9;
+}
