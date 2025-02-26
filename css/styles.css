@@ -5,21 +5,45 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f5f5f5;
-    color: #333;
-    display: flex;
-    flex-direction: column;
+:root {
+    --neon-purple: #b10dc9;
+    --neon-purple-light: #d730ff;
+    --neon-green: #01ff70;
+    --neon-green-light: #56ffad;
+    --dark-bg: #121212;
+    --dark-card-bg: #1e1e1e;
+    --dark-element-bg: #2d2d2d;
+    --dark-text: #f0f0f0;
+}
+
+html, body {
+    width: 100%;
     min-height: 100vh;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 header {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: #000;
+    color: var(--neon-purple-light);
     padding: 1rem;
     text-align: center;
+    border-bottom: 2px solid var(--neon-purple);
+    width: 100%;
+}
+
+header h1 {
+    text-shadow: 0 0 10px var(--neon-purple);
 }
 
 nav ul {
@@ -34,17 +58,24 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ecf0f1;
+    color: var(--dark-text);
     text-decoration: none;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
-nav ul li a:hover, 
+nav ul li a:hover {
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
 nav ul li a.active {
-    background-color: #3498db;
+    background-color: var(--neon-purple);
+    color: var(--dark-text);
+    box-shadow: 0 0 15px var(--neon-purple);
 }
 
 main {
@@ -53,59 +84,60 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin: 0 auto;
 }
 
 #game-container {
-    width: 100%;
-    max-width: 800px;
+    width: 800px;
+    max-width: 90%;
     min-height: 600px;
-    background-color: #fff;
+    background-color: var(--dark-card-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px var(--neon-purple);
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--neon-purple);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: #000;
+    color: var(--dark-text);
     text-align: center;
     padding: 1rem;
     margin-top: auto;
+    border-top: 2px solid var(--neon-green);
+    width: 100%;
 }
 
 /* Game specific styles */
 .game-canvas {
     display: block;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--dark-element-bg);
+    max-width: 100%; /* Ensure it doesn't overflow container */
 }
 
 /* Plinko specific styles */
 .plinko-board {
-    background-color: #1a1a2e;
+    background-color: var(--dark-element-bg);
     border-radius: 8px;
+    border: 1px solid var(--neon-green);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .plinko-controls {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-}
-
-.plinko-controls button {
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.plinko-controls button:hover {
-    background-color: #2980b9;
+    width: 100%;
 }
 
 /* Coin Flip specific styles */
@@ -116,6 +148,8 @@ footer {
     justify-content: center;
     height: 100%;
     padding: 2rem;
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't overflow container */
 }
 
 .score-display {
@@ -123,14 +157,21 @@ footer {
     margin-bottom: 2rem;
 }
 
+.score-display h2 {
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
 .score-value {
     font-size: 3rem;
     font-weight: bold;
     margin: 0.5rem 0;
+    color: var(--neon-purple-light);
+    text-shadow: 0 0 10px var(--neon-purple);
 }
 
 .streak {
-    color: #e74c3c;
+    color: var(--neon-green);
     font-weight: bold;
 }
 
@@ -163,15 +204,19 @@ footer {
 }
 
 .heads {
-    background-color: #f39c12;
-    color: #fff;
+    background-color: var(--neon-purple);
+    color: var(--dark-text);
     transform: rotateY(0deg);
+    text-shadow: 0 0 5px var(--dark-text);
+    box-shadow: 0 0 15px var(--neon-purple);
 }
 
 .tails {
-    background-color: #3498db;
-    color: #fff;
+    background-color: var(--neon-green);
+    color: black;
     transform: rotateY(180deg);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px var(--neon-green);
 }
 
 .flipping {
@@ -199,11 +244,13 @@ footer {
 }
 
 .correct {
-    color: #2ecc71;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
 }
 
 .wrong {
     color: #e74c3c;
+    text-shadow: 0 0 5px #e74c3c;
 }
 
 .guess-buttons {
@@ -218,25 +265,26 @@ footer {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    font-weight: bold;
 }
 
 #guess-heads {
-    background-color: #f39c12;
+    background-color: var(--neon-purple);
     color: white;
 }
 
 #guess-heads:hover {
-    background-color: #e67e22;
+    box-shadow: 0 0 15px var(--neon-purple);
 }
 
 #guess-tails {
-    background-color: #3498db;
-    color: white;
+    background-color: var(--neon-green);
+    color: black;
 }
 
 #guess-tails:hover {
-    background-color: #2980b9;
+    box-shadow: 0 0 15px var(--neon-green);
 }
 
 /* UP/DOWN Card Game specific styles */
@@ -246,6 +294,8 @@ footer {
     align-items: center;
     height: 100%;
     padding: 1.5rem;
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't overflow container */
 }
 
 .updown-info {
@@ -254,6 +304,7 @@ footer {
     width: 100%;
     max-width: 600px;
     margin-bottom: 2rem;
+    color: var(--neon-green);
 }
 
 .updown-score, .updown-deck-info {
@@ -278,14 +329,15 @@ footer {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--dark-element-bg);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     position: relative;
     font-family: 'Arial', sans-serif;
+    border: 1px solid #444;
 }
 
 .card.hearts, .card.diamonds {
@@ -293,7 +345,7 @@ footer {
 }
 
 .card.clubs, .card.spades {
-    color: #2c3e50;
+    color: var(--dark-text);
 }
 
 .card-value {
@@ -323,15 +375,18 @@ footer {
 }
 
 .updown-message.correct {
-    color: #2ecc71;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
 }
 
 .updown-message.wrong {
     color: #e74c3c;
+    text-shadow: 0 0 5px #e74c3c;
 }
 
 .updown-message.draw {
-    color: #3498db;
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var (--neon-purple);
 }
 
 .updown-buttons {
@@ -346,34 +401,44 @@ footer {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
     font-weight: bold;
 }
 
 #guess-higher {
-    background-color: #2ecc71;
-    color: white;
+    background-color: var(--neon-green);
+    color: black;
 }
 
 #guess-higher:hover {
-    background-color: #27ae60;
+    box-shadow: 0 0 15px var(--neon-green);
 }
 
 #guess-lower {
-    background-color: #e74c3c;
+    background-color: var(--neon-purple);
     color: white;
 }
 
 #guess-lower:hover {
-    background-color: #c0392b;
+    box-shadow: 0 0 15px var(--neon-purple);
 }
 
 .updown-button.new-game {
-    background-color: #3498db;
-    color: white;
+    background-color: var(--neon-green);
+    color: black;
     margin-top: 1rem;
 }
 
 .updown-button.new-game:hover {
-    background-color: #2980b9;
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+/* Fix for all game containers to ensure they center properly */
+#game-container > * {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

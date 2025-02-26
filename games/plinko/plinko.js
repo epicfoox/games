@@ -49,6 +49,15 @@ class PlinkoGame {
      * Create HTML elements for the game
      */
     createGameElements() {
+        // Create a wrapper div to ensure proper centering
+        const gameWrapper = document.createElement('div');
+        gameWrapper.className = 'plinko-wrapper';
+        gameWrapper.style.width = '100%';
+        gameWrapper.style.display = 'flex';
+        gameWrapper.style.justifyContent = 'center';
+        gameWrapper.style.alignItems = 'center';
+        gameWrapper.style.flexDirection = 'column';
+        
         // Create canvas
         this.canvas = document.createElement('canvas');
         this.canvas.width = this.width;
@@ -71,9 +80,12 @@ class PlinkoGame {
         controlsDiv.appendChild(dropButton);
         controlsDiv.appendChild(resetButton);
         
-        // Append elements to container
-        this.container.appendChild(this.canvas);
-        this.container.appendChild(controlsDiv);
+        // Append elements to wrapper
+        gameWrapper.appendChild(this.canvas);
+        gameWrapper.appendChild(controlsDiv);
+        
+        // Append wrapper to container
+        this.container.appendChild(gameWrapper);
     }
 
     /**
@@ -274,36 +286,52 @@ class PlinkoGame {
         this.ctx.clearRect(0, 0, this.width, this.height);
         
         // Draw slots
-        this.ctx.fillStyle = '#333';
+        this.ctx.fillStyle = '#2d2d2d';
         for (const slot of this.slots) {
             this.ctx.fillRect(slot.x, slot.y, slot.width, slot.height);
             
             // Draw slot points
-            this.ctx.fillStyle = 'white';
+            this.ctx.fillStyle = '#01ff70';
             this.ctx.font = '16px Arial';
             this.ctx.textAlign = 'center';
             this.ctx.fillText(slot.points, slot.x + slot.width / 2, slot.y + 30);
-            this.ctx.fillStyle = '#333';
+            this.ctx.fillStyle = '#2d2d2d';
         }
         
         // Draw pegs
-        this.ctx.fillStyle = '#ddd';
+        this.ctx.fillStyle = '#b10dc9';
         for (const peg of this.pegs) {
             this.ctx.beginPath();
             this.ctx.arc(peg.x, peg.y, peg.radius, 0, Math.PI * 2);
             this.ctx.fill();
+            
+            // Add glow effect
+            this.ctx.shadowColor = '#d730ff';
+            this.ctx.shadowBlur = 10;
+            this.ctx.beginPath();
+            this.ctx.arc(peg.x, peg.y, peg.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.shadowBlur = 0;
         }
         
         // Draw discs
-        this.ctx.fillStyle = '#f39c12';
+        this.ctx.fillStyle = '#01ff70';
         for (const disc of this.discs) {
             this.ctx.beginPath();
             this.ctx.arc(disc.x, disc.y, disc.radius, 0, Math.PI * 2);
             this.ctx.fill();
+            
+            // Add glow effect
+            this.ctx.shadowColor = '#56ffad';
+            this.ctx.shadowBlur = 10;
+            this.ctx.beginPath();
+            this.ctx.arc(disc.x, disc.y, disc.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.shadowBlur = 0;
         }
         
         // Draw drop indicator
-        this.ctx.fillStyle = 'rgba(243, 156, 18, 0.5)';
+        this.ctx.fillStyle = 'rgba(1, 255, 112, 0.5)';
         this.ctx.beginPath();
         this.ctx.arc(this.dropX, 50, this.discRadius, 0, Math.PI * 2);
         this.ctx.fill();

@@ -35,6 +35,15 @@ class UpDownGame {
      * Create HTML elements for the game
      */
     createGameElements() {
+        // Create wrapper div to ensure proper centering
+        const gameWrapper = document.createElement('div');
+        gameWrapper.className = 'game-wrapper';
+        gameWrapper.style.width = '100%';
+        gameWrapper.style.display = 'flex';
+        gameWrapper.style.justifyContent = 'center';
+        gameWrapper.style.alignItems = 'center';
+        gameWrapper.style.flexDirection = 'column';
+        
         // Create game container
         const gameDiv = document.createElement('div');
         gameDiv.className = 'updown-game';
@@ -123,7 +132,11 @@ class UpDownGame {
         gameDiv.appendChild(buttonsDiv);
         gameDiv.appendChild(newGameButton);
         
-        this.container.appendChild(gameDiv);
+        // Append game div to wrapper
+        gameWrapper.appendChild(gameDiv);
+        
+        // Append wrapper to container
+        this.container.appendChild(gameWrapper);
         
         // Save references to elements we'll need to update
         this.gameElements = {

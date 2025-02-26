@@ -29,6 +29,15 @@ class CoinFlipGame {
      * Create HTML elements for the game
      */
     createGameElements() {
+        // Create wrapper div to ensure proper centering
+        const gameWrapper = document.createElement('div');
+        gameWrapper.className = 'game-wrapper';
+        gameWrapper.style.width = '100%';
+        gameWrapper.style.display = 'flex';
+        gameWrapper.style.justifyContent = 'center';
+        gameWrapper.style.alignItems = 'center';
+        gameWrapper.style.flexDirection = 'column';
+        
         // Create game container
         const gameDiv = document.createElement('div');
         gameDiv.className = 'coin-flip-game';
@@ -102,7 +111,11 @@ class CoinFlipGame {
         gameDiv.appendChild(resultMessage);
         gameDiv.appendChild(buttonsDiv);
         
-        this.container.appendChild(gameDiv);
+        // Append game div to wrapper
+        gameWrapper.appendChild(gameDiv);
+        
+        // Append wrapper to container
+        this.container.appendChild(gameWrapper);
         
         // Save references to elements we'll need to update
         this.gameElements = {
